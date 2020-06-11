@@ -3,11 +3,11 @@
     %ul.box
       %li.left
         %p
-          hoge
+          = current_user.name
       %li.right
         = link_to "#", class: "icon" do
           = icon('fa', 'edit',class: 'icon')
-        = link_to "#", class: "icon" do
+        = link_to edit_user_path(current_user) do
           = icon('fa', 'cog',class: 'icon')
   .groups
     .mannaka
