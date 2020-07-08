@@ -3,38 +3,23 @@
     .aiueo
       .aiueo__title
         %p
-          test
+          = @group.name
       .aiueo__members
         %p
-          mamber
+          Member
+          - @group.users.each do |user|
+            = user.name
     .kakikukeko
       .kakikukeko__edit
-        = link_to "#" do
+        = link_to edit_group_path(@group) do
           .kakikukeko__edit-btn Edit
   .messages
-    .message
-      .upper-message
-        .upper-message__user-name
-          masa
-        .upper-message__date
-          2019/11/20
-      .lower-meesage
-        .lower-message__content
-          おはよう！
-    .message
-      .upper-message
-        .upper-message__user-name
-          masa
-        .upper-message__date
-          2019/11/20
-      .lower-meesage
-        .lower-message__content
-          おはよう！   
+    = render @messages
   .form
-    %form
-      %input.form__message
+    = form_for [@group, @message] do |f|
+      = f.text_field :content, class: 'form__message', placeholder: 'type a message'
       .form__mask
-        %label.form__mask__image
-          = icon('fa','image',class: 'icon')
-          %input.hidden{type: 'file'}
-      %input.form__submit{type: 'submit', value: 'Send'}
+        = f.label :image, class: 'form__mask__image' do
+          = icon('fas', 'image', class: 'icon')
+          = f.file_field :image, class: 'hidden'
+      = f.submit 'Send', class: 'form__submit'

@@ -12,10 +12,10 @@
   .groups
     - current_user.groups.each do |group|
       .mannaka
-        = link_to '#' do
+        = link_to group_messages_path(group) do
           .ue
             %p
               = group.name
           .sita
             %p
-              まだメッセージがありません
+              = group.show_last_message
